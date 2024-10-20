@@ -1,29 +1,25 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-int main()
-{
-    // where n is size of array arr
-    int n, max = 0, secmax = 0;
-    cin >> n;
-    int arr[100000];
-
-    for (int i = 0; i < n; i++)
-        cin >> arr[i];
-
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i] > max)
+class Solution {
+  public:
+    // Function returns the second
+    // largest elements
+    int getSecondLargest(vector<int> &arr) {
+        int max = -1, secmax;
+        
+        for(int i = 0; i < arr.size(); i++)
         {
-            secmax = max;
-            max = arr[i];
+            if (arr.at(i) > max)
+            {
+                secmax = max;
+                max = arr.at(i);
+            }
+            //if there's a no. less than max, greater than second max,
+            else if(arr.at(i) > secmax && arr.at(i) < max)
+            {
+                secmax = arr.at(i);
+            }
         }
-        else if(arr[i] > secmax && arr[i] != max)
-            secmax = arr[i];
+        
+        return secmax;
+        
     }
-    if(max == secmax)
-        secmax = -1;
-    cout << secmax << endl;
-
-    return 0;
-}
+};
